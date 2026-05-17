@@ -55,7 +55,7 @@ pip install requests pandas mysql-connector-python numpy python-dotenv
 
 ### 5. Open and run the notebook
 
-Open `Ejercicio_final_SQL_phyton.ipynb` in Jupyter Notebook or VS Code and run the cells in order.
+Open `Final_Exercise_SQL_python.ipynb` in Jupyter Notebook or VS Code and run the cells in order.
 
 ---
 
