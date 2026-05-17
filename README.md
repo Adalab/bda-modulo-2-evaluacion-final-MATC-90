@@ -30,7 +30,7 @@ Python 3.14.3 · Jupyter Notebook · MySQL
 ### 1. Clone the repository
 
 ```
-git clone <your-repository-url>
+git clone <https://github.com/Adalab/bda-modulo-2-evaluacion-final-MATC-90.git>
 ```
 
 ### 2. Set up your environment variables
