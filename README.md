@@ -18,8 +18,8 @@ Python 3.14.3 · Jupyter Notebook · MySQL
 
 ## Project Structure 🧬
 
-* `Ejercicio_final_SQL_phyton.ipynb` — Main notebook: API extraction, database creation, data insertion and SQL queries (Exercise 1)
-* `Ejercicio_final_sakilas.sql` — SQL queries for the Sakila database analysis (Exercise 2)
+* `Final_Exercise_SQL_python.ipynb` — Main notebook: API extraction, database creation, data insertion and SQL queries (Exercise 1)
+* `final_exercise_sakila.sql` — SQL queries for the Sakila database analysis (Exercise 2)
 * `.env` — Local environment file containing sensitive credentials (**not included in the repository**)
 * `README.md` — Project documentation
 
