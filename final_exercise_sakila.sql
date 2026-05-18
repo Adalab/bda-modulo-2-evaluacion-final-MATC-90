@@ -52,13 +52,67 @@ FROM film
 GROUP BY rating;
 
 -- Find the total number of films rented by each customer and display the customer ID, first name, last name and rental count
--- Encuentra la cantidad total de películas alquiladas por cada cliente y muestra el ID del cliente, su nombre y apellido junto con la cantidad de películas alquiladas
--- select id cliente, nombre apellido -- tabla customer
--- cantidad de peliculas alquiladas, que no cuales. contar numero de veces customer id en tabla rental
+SELECT c.customer_id,
+	COUNT(*) AS total_rental,
+	CONCAT(first_name, ' ', last_name) AS full_name
+FROM customer c
+LEFT JOIN rental r ON c.customer_id = r.customer_id
+GROUP BY c.customer_id;
+    
+-- Find the total number of films rented per category and display the category name along with the rental count. 
+-- Encuentra la cantidad total de películas alquiladas por categoría y muestra el nombre de la categoría junto con el recuento de alquileres.
+-- EL NOMBRE DE LA CATEGORIAS ESTA EN CATEGORY
+-- id_category esta en categorfilm para unir con INVENTORY y obtener el FILMI Y INVENTORYID
+-- recuento de alquileres de cada pelicula (rental inventoryid en este caso) 
+-- inventory une con film id
+-- CUENTO TOTAL RENTAL
 
-	SELECT c.customer_id,
-		COUNT(*) AS total_rental,
-		CONCAT(first_name, ' ', last_name) AS full_name
-	FROM customer c
-    LEFT JOIN rental r ON c.customer_id = r.customer_id
-	GROUP BY c.customer_id;
+SELECT c.name,
+	COUNT(r.rental_id) AS total_rentals
+FROM category c
+LEFT JOIN film_category fc ON c.category_id = fc.category_id
+LEFT JOIN inventory i ON fc.film_id = i.film_id
+LEFT JOIN rental r ON i.inventory_id = r.inventory_id
+GROUP BY c.name
+ORDER BY total_rentals DESC;
+
+-- Find the average movie length for each rating in the film table and show the rating along with the average length.
+
+-- Encuentra el promedio de duración de las películas para cada clasificación de la tabla film y muestra la clasificación junto con el promedio de duración.
+-- debo mostrar la clasificacion(rating) con promedio len
+-- agrupar por clasificacion
+	
+SELECT rating,
+	ROUND(AVG(length),0) AS Average_length
+FROM film
+GROUP BY rating 
+ORDER BY average_length ASC;
+
+-- Find the first and last name of the actors who appear in the movie with the title 'Indian Love'
+-- Encuentra el nombre y apellido de los actores que aparecen en la película con title "Indian Love".
+-- los nombres de los actores estan en la tabla actor
+-- se relaciona con film actor y esa con film para obtener el nombre de "indian love"
+-- INTERSECCION EXACTA, NO VA a ghaber null n el cruce
+
+SELECT 
+	CONCAT(first_name, ' ', last_name) AS full_name
+FROM actor a
+INNER JOIN film_actor fa ON a.actor_id = fa.actor_id
+INNER JOIN film f ON fa.film_id = f.film_id
+WHERE f.title = "Indian Love";
+
+-- Muestra el título de todas las películas que contengan la palabra "dog" o "cat" en su descripción
+
+SELECT title, description
+FROM film
+WHERE description REGEXP 'dog|cat'
+ORDER BY title ASC;
+
+-- Find the title of all movies that were released between the years 2005 and 2010
+SELECT title, release_year
+FROM film 
+WHERE release_year BETWEEN 2005 AND 2010
+ORDER BY release_year ASC;
+    
+    
+    
