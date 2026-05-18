@@ -53,7 +53,7 @@ GROUP BY rating;
 
 -- Find the total number of films rented by each customer and display the customer ID, first name, last name and rental count
 SELECT c.customer_id,
-	COUNT(*) AS total_rental,
+	COUNT(r.rental_id) AS total_rental,
 	CONCAT(first_name, ' ', last_name) AS full_name
 FROM customer c
 LEFT JOIN rental r ON c.customer_id = r.customer_id
