@@ -6,16 +6,18 @@ FROM movies_info
 WHERE runtime > 120
 ORDER BY runtime DESC; 
 
--- PELICULAS SUBTITULOS ES
+-- CUANTAS PELICULAS SUBTITULOS ES
+SELECT language_code AS language, 
+COUNT(movie_id) AS Total_Spanish 
+FROM subtitles_info s 
+LEFT JOIN movie_subtitles ms ON ms.subtitle_id = s.subtitle_id 
+WHERE language_code = 'es'
+GROUP BY s.subtitle_id;
 
-SELECT *
+-- CUANTAS peliculas adultos
+SELECT COUNT(is_adult) AS rating_adult
 FROM movies_info
-WHERE subtitles LIKE "%es%";
-
--- peliculas adultos
-SELECT *
-FROM movies_info
-WHERE rating = TRUE;
+WHERE is_adult = TRUE;
 
 -- pelicula mas antigua
 SELECT *
