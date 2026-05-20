@@ -30,7 +30,7 @@ ORDER BY full_name ASC;
 SELECT 
 	CONCAT(first_name, ' ', last_name) AS full_name
 FROM actor
-WHERE last_name LIKE "%Gibson%";
+WHERE last_name = 'GIBSON';
 
 -- Find actor names with an actor_id between 10 and 20.
 SELECT actor_id,
