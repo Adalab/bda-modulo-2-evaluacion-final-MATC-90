@@ -33,10 +33,10 @@ ORDER BY runtime_avg;
 
 -- How many movies have been registered per year? Sort from highest to lowest.
 SELECT year,
-	count(*) as movies_per_year
+	count(*) as registered_per_year
 FROM movies_info
 GROUP BY year
-ORDER BY movies_per_year desc;
+ORDER BY registered_per_year desc;
 
 -- Which year has the highest number of movies in the database?
 SELECT year,
